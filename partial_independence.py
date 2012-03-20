@@ -20,11 +20,12 @@ def compute_logp_independent_block(X, alpha=None):
     return logp_ib
 
 
-def compute_logp_H(X, alpha, psi):
+def compute_logp_H(X, psi, alpha=None):
     """Compute the analytical log likelihood of the confusion matrix X
     with hyper-prior alpha (in a multivariate-Dirichlet sense)
     according to a partitioning scheme psi.
     """
+    if alpha is None: alpha = np.ones(X.shape)
     logp_H = 0.0
     for group in psi:
         if len(group) == 1: logp_H += log_multivariate_polya(X[group[0],:], alpha[group[0],:])
@@ -84,6 +85,6 @@ if __name__ == '__main__':
     print "alpha:"
     print alpha
     
-    logp_H = compute_logp_H(X, alpha, psi)
+    logp_H = compute_logp_H(X, psi, alpha)
 
     print "Analytical estimate:", logp_H

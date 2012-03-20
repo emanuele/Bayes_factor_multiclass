@@ -49,7 +49,7 @@ if __name__ == '__main__':
     partitions = Partition(range(X.shape[0]))
     partitions1 = Partition(range(1,X.shape[0]+1))
     for psi in partitions:
-        logp_H = compute_logp_H(X, alpha, psi)
+        logp_H = compute_logp_H(X, psi, alpha)
         print psi, logp_H
         logp_Hs.append(logp_H)
 
