@@ -20,7 +20,10 @@ if __name__ == '__main__':
     for i, partition in enumerate(partitions):
         logp_X_given_H[i] = compute_logp_H(X, partition, alpha=alpha)
 
+    # normalization constant: p(X)
     logp_X = reduce(np.logaddexp, logp_X_given_H + np.log(prior_H))
+
+    # p(H|X) from Bayes rule:
     log_posterior_H_given_X = logp_X_given_H + np.log(prior_H) - logp_X
 
     idx = np.argsort(log_posterior_H_given_X)[::-1]
