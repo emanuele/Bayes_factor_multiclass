@@ -18,7 +18,7 @@ This program is distributed under the GNU General Public Licence v3.0.
 """
 
 import numpy as np
-from scipy import factorial
+from scipy.special import factorial
 from scipy.special import gammaln
 
 
